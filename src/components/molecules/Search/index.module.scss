@@ -1,0 +1,25 @@
+.search_container {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 60px;
+}
+.search_title {
+    padding: 8px 16px;
+    background: #ffc900c7;
+    border-radius: 5px 5px 5px 5px/25px 25px 0 5px;
+    border-bottom: 2px solid;
+    h4 {
+        color: #fff;
+    }
+    // &:hover {
+    //     transform: translate(0rem, -0.25rem);
+    //     box-shadow: 2px 5px #000;
+    // }
+}
+.search_content {
+    padding: 16px 16px;
+    background: #fff;
+    .form-group {
+        display: block;
+    }
+}

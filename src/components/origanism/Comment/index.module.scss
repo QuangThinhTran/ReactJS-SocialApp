@@ -1,0 +1,28 @@
+.comment_container {
+    color: #212529;
+    font-family: Neucha;
+    font-weight: 300;
+    line-height: 24px;
+    margin-top: 16px;
+}
+.comment_header {
+    display: flex;
+    justify-content: space-between;
+    img {
+        width: 10%;
+        border-radius: 50%;
+    }
+}
+.comment_header--infor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.comment_content {
+    padding: 10px 20px;
+    color: #212529;
+    font-family: Neucha;
+    font-weight: 300;
+    line-height: 24px;
+    font-size: 14px;
+}

@@ -1,0 +1,12 @@
+.header-container {
+    display: flex;
+    gap: 20px;
+    font-family: "Cabin Sketch";
+    color: #ffffff6c;
+    a {
+        &:hover {
+            color: #fff
+        }
+        transition: all 0.3s ease;
+    }
+}

@@ -1,0 +1,29 @@
+.ticket {
+    position: absolute;
+    right: 15px;
+    top: 42px;
+    width: 120px;
+    background: #fff;
+    border: 2px solid #212529;
+    border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.ticket_container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+}
+.ticket_container_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-family: "Neucha", sans-serif;
+    cursor: pointer;
+}
+.dotted {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2c2b2b;
+}

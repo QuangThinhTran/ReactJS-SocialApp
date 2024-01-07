@@ -1,0 +1,17 @@
+.following_container {
+    width: 100%;
+    height: fit-content;
+}
+.following_title {
+    padding: 8px 16px;
+    background: rgb(0 177 255 / 78%);
+    border-radius: 5px 5px 5px 5px/25px 25px 0 5px;
+    border-bottom: 2px solid;
+    h4 {
+        color: #fff;
+    }
+}
+.following_content {
+    padding: 16px 16px;
+    background: #fff;
+}
