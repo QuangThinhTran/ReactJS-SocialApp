@@ -1,16 +1,16 @@
+import { Outlet } from "react-router-dom"
 import NavBar from "../components/molecules/NavBar"
 import Section from "../components/origanism/Section"
 import Header from "../components/template/Header/Header"
-import Profile from "../components/template/Profile/Profile"
 
-const ProfilePage = () => {
+const LayoutPage = () => {
     return (
         <>
             <Header />
             <div className="main">
                 <div className='main_container'>
                     <NavBar />
-                    <Profile />
+                    <Outlet />
                     <Section />
                 </div>
             </div>
@@ -18,4 +18,4 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage
+export default LayoutPage

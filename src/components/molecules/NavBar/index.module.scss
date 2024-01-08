@@ -1,6 +1,9 @@
 .nav_container {
+    position: fixed;
     display: flex;
     flex-direction: column;
+    top: 75px;
+    left: 25px;
     width: 20%;
     height: fit-content;
     border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;

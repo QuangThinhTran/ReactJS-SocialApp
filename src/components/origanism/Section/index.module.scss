@@ -1,4 +1,7 @@
 .section {
+    position: fixed;
+    top: 75px;
+    right: 25px;
     display: flex;
     flex-direction: column;
     width: 20%;

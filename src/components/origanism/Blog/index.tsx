@@ -3,7 +3,6 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
@@ -19,7 +18,6 @@ const Blog = () => {
     setLike(!like)
   }
 
-  console.log(like)
   return (
     <>
       <hr />

@@ -1,11 +1,14 @@
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
     padding: 8px 0;
     background: rgba(42,44,46,1);
     border-radius: 25px 25px 55px 5px/5px 55px 25px 25px;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 1;
 }
 .container {
     display: flex;
