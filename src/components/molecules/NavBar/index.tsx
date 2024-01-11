@@ -8,7 +8,7 @@ const NavBar = () => {
                 <div className={style['nav_content']}>
                     <Link to="/" className={style['nav-link']}>Home</Link>
                     <Link to="/bookmark" className={style['nav-link']}>Bookmark</Link>
-                    <Link to="" className={style['nav-link']}>Setting</Link>
+                    <Link to="/people" className={style['nav-link']}>People</Link>
                 </div>
                 <Link to="/profile" className={style['nav_footer'] + ' nav-btn'}>View Profile </Link>
             </div>

@@ -6,6 +6,7 @@ import Bookmark from './components/template/Bookmark'
 import Profile from './components/template/Profile/Profile'
 import Home from './components/origanism/Home'
 import LayoutPage from './page/LayoutPage'
+import People from './components/template/People'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path={'/login'} element={<Login />} />
         <Route path={'/profile'} element={<Profile />} />
         <Route path={'/bookmark'} element={<Bookmark />} />
-
+        <Route path={'/people'} element={<People />} />
       </Route>
       <Route path={'*'} element={<NotFoundPage />} />
     </Routes>
