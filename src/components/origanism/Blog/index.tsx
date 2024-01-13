@@ -1,11 +1,13 @@
 import CommentContainer from '../Comment'
 import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faBars, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
+import Images from '../../atom/Silder/Images';
+
 const Blog = () => {
   const [show, setShow] = useState<boolean>(false)
   const [like, setLike] = useState<boolean>(false)
@@ -37,6 +39,7 @@ const Blog = () => {
           written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line
           of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
         </div>
+        <Images path='image-1.jpg' />
         <div className={style['blog_attributte']}>
           <div className={style['blog_attributte--item']} onClick={() => handleLike()}>
             {
