@@ -1,4 +1,4 @@
-import CommentContainer from '../Comment/CommentContainer'
+import CommentContainer from '../Comment'
 import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faBars, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
@@ -43,9 +43,6 @@ const Blog = () => {
               like ? (<FontAwesomeIcon icon={faHeart} style={{ color: 'red' }} />) : (<FontAwesomeIcon icon={faHeartRegular} />)
             }
             120
-          </div>
-          <div className={style['blog_attributte--item']}>
-            <FontAwesomeIcon icon={faComment} />22 Comments
           </div>
           <div className={style['blog_attributte--item']}>
             <FontAwesomeIcon icon={faClock} /> 3-5-2023

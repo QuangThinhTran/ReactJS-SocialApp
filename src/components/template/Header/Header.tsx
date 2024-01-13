@@ -1,14 +1,14 @@
-import HeaderContainer from "../../origanism/Header/HeaderContainer"
+import HeaderContainer from "../../origanism/Header"
 import './index.scss';
 
 const Header = () => {
   return (
-      <header>
-        <div className="container">
-          <a href="/" className="navbar-brand">Ideas</a>
-          <HeaderContainer/>
-        </div>
-      </header>
+    <header>
+      <div className="container">
+        <a href="/" className="navbar-brand">Ideas</a>
+        <HeaderContainer />
+      </div>
+    </header>
   )
 }
 
