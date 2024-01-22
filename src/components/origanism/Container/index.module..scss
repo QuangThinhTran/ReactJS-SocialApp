@@ -1,0 +1,16 @@
+.container {
+    width: 45%;
+    position: relative;
+    top: 75px;
+}
+
+@media (min-width: 767.99px) {
+    .home_container {
+        width: 85%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .home_container {
+        width: 85%;
+    }
+}

@@ -2,6 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import style from './index.module.scss'
 
+interface IFollower {
+    name: string,
+    email: string
+}
+
 const Follower = () => {
   return (
     <div className={style['follower']}>

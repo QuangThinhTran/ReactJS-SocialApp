@@ -1,12 +1,14 @@
-import HeaderContainer from "../../origanism/Header"
-import './index.scss';
+import style from './index.module.scss';
 
 const Header = () => {
   return (
     <header>
-      <div className="container">
-        <a href="/" className="navbar-brand">Ideas</a>
-        <HeaderContainer />
+      <div className={style['container']}>
+        <a href="/" className={style['navbar-brand']}>Ideas</a>
+        <div className={style['header-container']}>
+          <a href="/login" className="nav-link">Login</a>
+          <a href="/register" className="nav-link">Register</a>
+        </div>
       </div>
     </header>
   )

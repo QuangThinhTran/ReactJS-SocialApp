@@ -1,12 +1,12 @@
 import Blog from '../../origanism/Blog';
-
+import Container from '../../origanism/Container';
 const Bookmark = () => {
   return (
-    <div className='home_container'>
+    <Container>
       <h4>Bookmark</h4>
       <Blog />
       <Blog />
-    </div>
+    </Container>
   )
 }
 

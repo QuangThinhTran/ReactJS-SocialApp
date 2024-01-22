@@ -4,9 +4,8 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import './../public/index.scss'
 
-// Create a container element for your app
 const appContainer = document.createElement('div');
-appContainer.id = 'root'; // Give it an ID or select an existing element by ID
+appContainer.id = 'root';
 document.body.appendChild(appContainer);
 
 // Render your app inside the container

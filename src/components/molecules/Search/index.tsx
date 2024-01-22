@@ -1,3 +1,4 @@
+import Button from '../../atom/Button'
 import style from './index.module.scss'
 
 const Search = () => {
@@ -7,7 +8,7 @@ const Search = () => {
       <div className={style['search_content']}>
         <form action="" method="post">
           <input type="text" placeholder="..." />
-          <button type="submit" className="btn-submit">Search</button>
+          <Button color='#ff90e8' text='Share' />
         </form>
       </div>
     </div>

@@ -1,6 +1,13 @@
 import style from './index.module.scss'
 
-const CommentContainer = () => {
+interface IComment {
+  name: string,
+  description: string,
+  datetime: string
+}
+
+
+const Comment = () => {
   return (
     <>
       <hr />
@@ -22,4 +29,4 @@ const CommentContainer = () => {
   )
 }
 
-export default CommentContainer
+export default Comment

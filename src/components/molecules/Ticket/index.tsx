@@ -19,7 +19,6 @@ const Ticket = () => {
     }
 
     const onSubmit: SubmitHandler<IForm> = data => {
-        console.log(data)
         reset
     }
 

@@ -1,3 +1,4 @@
+import Button from '../../atom/Button'
 import Header from '../Header/Header'
 import './index.scss'
 
@@ -31,7 +32,7 @@ const Register = () => {
                             <label htmlFor="">Confirm password</label>
                             <input type="password" placeholder='Input confirm password' name='password_confirm' />
                         </div>
-                        <button className='btn-submit'>Register</button>
+                        <Button color='#ff90e8' text='Register' />
                     </form>
                 </div>
             </div>

@@ -2,6 +2,11 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
+interface IAccount {
+    name: string,
+    followers: number
+}
+
 const Account = () => {
     return (
         <>

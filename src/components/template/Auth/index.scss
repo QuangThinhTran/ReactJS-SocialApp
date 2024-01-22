@@ -1,7 +1,10 @@
 .auth {
+    position: relative;
+    top: 50px;
     display: flex;
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 80px;
+    width: 100%;
 }
 
 .auth_container {
@@ -11,5 +14,13 @@
         color: #212529;
         font-family: "Cabin Sketch";
         font-weight: 500;
+    }
+}
+@media (max-width: 1023px) {
+    .auth {
+        padding-top: 40px;
+    }
+    .auth_container {
+        width: 85%;
     }
 }

@@ -8,6 +8,13 @@ import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
 import Images from '../../atom/Silder/Images';
 
+interface IBlog {
+    name: string,
+    description: string,
+    like: number,
+    datetime: string
+}
+
 const Blog = () => {
   const [show, setShow] = useState<boolean>(false)
   const [like, setLike] = useState<boolean>(false)

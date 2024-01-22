@@ -1,3 +1,4 @@
+import Button from '../Button'
 import style from './index.module.scss'
 
 interface IForm {
@@ -9,10 +10,8 @@ const FormComment = (props: IForm) => {
         <form action="" method="post" onSubmit={undefined}>
             <textarea rows={props.rows} defaultValue={""} />
             <div className={style['form-container']}>
-
-                <button type='submit' className={style['btn-submit']}>Share</button>
+                <Button color='#ff90e8' text='Share' />
             </div>
-
         </form>
     )
 }

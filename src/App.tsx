@@ -4,23 +4,35 @@ import Login from './components/template/Auth/Login'
 import NotFoundPage from './page/NotFoundPage'
 import Bookmark from './components/template/Bookmark'
 import Profile from './components/template/Profile/Profile'
-import Home from './components/origanism/Home'
+import Home from './components/template/Home'
 import LayoutPage from './page/LayoutPage'
 import People from './components/template/People'
+import BaseProvider from './utils/BaseProvider'
+import React from 'react'
+
+function AppUI() {
+  return (
+    <React.Fragment>
+      <Routes>
+        <Route element={<LayoutPage />}>
+          <Route path={'/'} element={<Home />} />
+          <Route path={'/profile'} element={<Profile />} />
+          <Route path={'/bookmark'} element={<Bookmark />} />
+          <Route path={'/people'} element={<People />} />
+        </Route>
+        <Route path={'/register'} element={<Register />} />
+        <Route path={'/login'} element={<Login />} />
+        <Route path={'*'} element={<NotFoundPage />} />
+      </Routes>
+    </React.Fragment>
+  )
+}
 
 function App() {
   return (
-    <Routes>
-      <Route element={<LayoutPage />}>
-        <Route path={'/'} element={<Home />} />
-        <Route path={'/register'} element={<Register />} />
-        <Route path={'/login'} element={<Login />} />
-        <Route path={'/profile'} element={<Profile />} />
-        <Route path={'/bookmark'} element={<Bookmark />} />
-        <Route path={'/people'} element={<People />} />
-      </Route>
-      <Route path={'*'} element={<NotFoundPage />} />
-    </Routes>
+    <BaseProvider>
+      <AppUI />
+    </BaseProvider>
   )
 }
 

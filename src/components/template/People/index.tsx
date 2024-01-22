@@ -1,9 +1,10 @@
 import Account from "../../origanism/Account"
+import Container from "../../origanism/Container"
 import style from './index.module.scss'
 
 const People = () => {
     return (
-        <div className='home_container'>
+        <Container>
             <hr />
             <h4>People</h4>
             <div className={style['account']}>
@@ -12,7 +13,7 @@ const People = () => {
                     <Account />
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

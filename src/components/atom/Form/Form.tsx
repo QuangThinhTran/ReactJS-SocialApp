@@ -1,3 +1,4 @@
+import Button from '../Button'
 import style from './index.module.scss'
 
 interface IForm {
@@ -13,7 +14,7 @@ const Form = (props: IForm) => {
           Select files
           <input id="file-upload" type="file" multiple />
         </label>
-        <button type='submit' className={style['btn-submit']}>Share</button>
+        <Button color='#ff90e8' text='Share' />
       </div>
 
     </form>

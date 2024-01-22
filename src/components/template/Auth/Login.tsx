@@ -1,3 +1,4 @@
+import Button from '../../atom/Button'
 import Header from '../Header/Header'
 import './index.scss'
 
@@ -18,7 +19,7 @@ const Login = () => {
                             <label htmlFor="">Password</label>
                             <input type="password" placeholder='Input password' name='password' />
                         </div>
-                        <button className='btn-submit'>Login</button>
+                        <Button color='#ff90e8' text='Login' />
                     </form>
                 </div>
             </div>

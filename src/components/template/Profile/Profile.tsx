@@ -2,10 +2,18 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Blog from '../../origanism/Blog';
+import Container from '../../origanism/Container';
+
+interface Profile {
+  name: string,
+  email: string,
+  description: string,
+  followers: number,
+}
 
 const Profile = () => {
   return (
-    <>
+    <Container>
       <div className={style['profile']}>
         <div className={style['profile_container'] + ' card'}>
           <div className={style['profile_content']}>
@@ -28,7 +36,7 @@ const Profile = () => {
         </div>
         <Blog />
       </div>
-    </>
+    </Container>
   )
 }
 
