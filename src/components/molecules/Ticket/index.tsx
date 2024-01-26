@@ -15,7 +15,7 @@ const Ticket = () => {
     const { register, handleSubmit, reset } = useForm<IForm>();
 
     const handleModal = () => {
-        setShowModal(!showModal)
+                setShowModal(!showModal)
     }
 
     const onSubmit: SubmitHandler<IForm> = data => {

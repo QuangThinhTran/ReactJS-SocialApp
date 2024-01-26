@@ -26,3 +26,8 @@
     line-height: 24px;
     font-size: 14px;
 }
+@media (max-width: 767.99px) {
+    p {
+        width: 35%;
+    }
+}

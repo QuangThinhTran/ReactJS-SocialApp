@@ -3,16 +3,16 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
 import Images from '../../atom/Silder/Images';
 
 interface IBlog {
-    name: string,
-    description: string,
-    like: number,
-    datetime: string
+  name: string,
+  description: string,
+  like: number,
+  datetime: string
 }
 
 const Blog = () => {
@@ -23,9 +23,29 @@ const Blog = () => {
     setShow(!show)
   }
 
+  const iconRef = useRef<SVGSVGElement>(null);
+
   const handleLike = () => {
     setLike(!like)
   }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (iconRef.current && !iconRef.current.contains(event.target as Node)) {
+      setShow(false);
+    }
+  };
+
+  const handleFontAwesomeIconClick = () => {
+    setShow(!show);
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -36,7 +56,7 @@ const Blog = () => {
             <img src="/icon/avatar.svg" alt="" />
             <a href="" className='h5'>Mario</a>
           </div>
-          <FontAwesomeIcon icon={faBars} onClick={() => showTicket()} className={style['icon']} />
+          <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick}  className={style['icon']} />
           {
             show ? <Ticket /> : null
           }

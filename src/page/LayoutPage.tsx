@@ -1,20 +1,34 @@
 import { Outlet } from "react-router-dom"
 import NavBar from "../components/molecules/NavBar"
 import Section from "../components/origanism/Section"
-import { useContext } from "react"
-import { ScreenContext } from "../utils/BaseProvider"
 import Header from "../components/template/Header/Header"
+import { useScreenMobile, useScreenTablet } from "../utils/ScreenResponsive"
 
 const LayoutPage = () => {
-    const isReponsive = useContext(ScreenContext)
+    const mobile = useScreenMobile()
+    const tablet = useScreenTablet()
+
+    if (mobile.screen || tablet.screen) {
+        return (
+            <>
+                <Header />
+                <div className="main">
+                    <div className='main_container'>
+                        <Outlet />
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <Header />
             <div className="main">
                 <div className='main_container'>
-                    {isReponsive.mobile || isReponsive.tablet ? null : <NavBar />}
+                    <NavBar />
                     <Outlet />
-                    {isReponsive.mobile || isReponsive.tablet ? null : <Section />}
+                    <Section />
                 </div>
             </div>
         </>
