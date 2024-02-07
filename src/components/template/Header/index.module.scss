@@ -5,7 +5,7 @@ header {
     position: fixed;
     width: 100%;
     padding: 8px 0;
-    background: rgba(42,44,46,1);
+    background: rgba(42, 44, 46, 1);
     border-radius: 25px 25px 55px 5px/5px 55px 25px 25px;
     height: 40px;
     z-index: 1;
@@ -17,7 +17,7 @@ header {
     a {
         color: #ffffff66;
         &:hover {
-            color: #fff
+            color: #fff;
         }
         transition: all 0.3s ease;
     }
@@ -37,6 +37,23 @@ header {
     text-decoration: none;
     color: #fff;
 }
+.bars {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(42, 44, 46, 1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.bars.open {
+    transform: translateX(0);
+}
+
 @media (max-width: 767.99px) {
     .container {
         padding: 0 40px;

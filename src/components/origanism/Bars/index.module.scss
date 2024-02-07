@@ -1,0 +1,27 @@
+.bars_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 70px;
+    font-family: "Neucha", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    color: #fff;
+    a {
+        font-family: "Neucha", sans-serif;
+        font-size: 50px;
+        font-weight: 600;
+        line-height: 24px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    svg {
+        font-size: 60px;
+    }
+}

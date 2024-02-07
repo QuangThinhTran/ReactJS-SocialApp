@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import NavBar from "../components/molecules/NavBar"
 import Section from "../components/origanism/Section"
 import Header from "../components/template/Header/Header"
-import { useScreenMobile, useScreenTablet } from "../utils/ScreenResponsive"
+import { useScreenMobile, useScreenTablet } from "../common/ScreenResponsive"
 
 const LayoutPage = () => {
     const mobile = useScreenMobile()

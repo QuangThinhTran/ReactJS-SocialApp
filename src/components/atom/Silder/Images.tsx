@@ -4,7 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import './index.scss'
 
 interface IImage {
-    path: string
+    path: any
+}
+
+interface IPath {
+    id: number,
+    path: any
 }
 
 const Images = (props: IImage) => {
@@ -15,15 +20,16 @@ const Images = (props: IImage) => {
         autoplaySpeed: 2000,
         dots: true
     };
-
+    
     return (
         <Slider {...settings}>
-            <div>
-                <img src={'/images/' + props.path} alt="" />
-            </div>
-            <div>
-                <img src={'/images/' + props.path} alt="" />
-            </div>
+            {
+                props.path.map((value: IPath) => (
+                    <div key={value.id}>
+                        <img src={'http://127.0.0.1:3000/' + value.path} alt="" />
+                    </div>
+                ))
+            }
         </Slider>
     )
 }

@@ -8,14 +8,14 @@ import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
 import Images from '../../atom/Silder/Images';
 
-interface IBlog {
-  name: string,
-  description: string,
-  like: number,
-  datetime: string
+type IBlog = {
+  id: number,
+  content: string,
+  images: string,
+  name: string
 }
 
-const Blog = () => {
+const Blog = ({...props}: IBlog) => {
   const [show, setShow] = useState<boolean>(false)
   const [like, setLike] = useState<boolean>(false)
 
@@ -46,7 +46,7 @@ const Blog = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
+  
   return (
     <>
       <hr />
@@ -54,7 +54,7 @@ const Blog = () => {
         <div className={style['blog_header']}>
           <div className={style['blog_header--infor']}>
             <img src="/icon/avatar.svg" alt="" />
-            <a href="" className='h5'>Mario</a>
+            <a href="" className='h5'>{ props.name }</a>
           </div>
           <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick}  className={style['icon']} />
           {
@@ -62,11 +62,9 @@ const Blog = () => {
           }
         </div>
         <div className={style['blog_container']}>
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-          written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line
-          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+          { props.content }
         </div>
-        <Images path='image-1.jpg' />
+        <Images path={props.images} />
         <div className={style['blog_attributte']}>
           <div className={style['blog_attributte--item']} onClick={() => handleLike()}>
             {
