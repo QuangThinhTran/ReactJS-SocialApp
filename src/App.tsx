@@ -7,7 +7,7 @@ import Profile from './components/template/Profile/Profile'
 import Home from './components/template/Home'
 import LayoutPage from './page/LayoutPage'
 import People from './components/template/People'
-import BaseProvider from './common/BaseProvider'
+import BaseProvider from './common/providers/BaseProvider'
 import React from 'react'
 
 function AppUI() {

@@ -2,13 +2,12 @@ import { Outlet } from "react-router-dom"
 import NavBar from "../components/molecules/NavBar"
 import Section from "../components/origanism/Section"
 import Header from "../components/template/Header/Header"
-import { useScreenMobile, useScreenTablet } from "../common/ScreenResponsive"
+import useResize from "../common/hooks/useResize"
+import { CONSTANTS } from "../common/constants"
 
 const LayoutPage = () => {
-    const mobile = useScreenMobile()
-    const tablet = useScreenTablet()
-
-    if (mobile.screen || tablet.screen) {
+    const { width } = useResize()
+    if (width == CONSTANTS.SCREEN_MOBILE || width <= CONSTANTS.SCREEN_TABLET) {
         return (
             <>
                 <Header />

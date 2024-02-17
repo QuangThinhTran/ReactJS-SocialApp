@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 import { useEffect, useState } from "react"
 
 interface FetchResult {
@@ -9,22 +9,26 @@ interface FetchResult {
 
 const API = 'http://127.0.0.1:3000/'
 
-const useFetch = () => {
+const useFetch = (url: string, config?: AxiosRequestConfig<any>) => {
     const [data, setData] = useState<any | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response: FetchResult = await axios.get(API);
-                setData(response.data);
+                const response: FetchResult = await axios.get(API + url, config);
+                setData(response?.data?.data);
             } catch (error) {
                 setError("Error fetching data");
             }
         };
 
+        let isMounted = true;
         fetchData();
-    }, [API]);
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     return { data, error };
 };

@@ -34,7 +34,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <Blog />
+        {/* <Blog /> */}
       </div>
     </Container>
   )

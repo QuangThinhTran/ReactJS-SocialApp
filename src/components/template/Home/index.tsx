@@ -3,22 +3,14 @@ import Blog from '../../origanism/Blog';
 import Container from '../../origanism/Container';
 import style from './index.module.scss';
 import useFetch from '../../../common/hooks/useFetch';
-
-type IBlog = {
-  id: number,
-  content: string,
-  images: string,
-  name: string
-}
+import { BLOG } from '../../../common/enums/route';
 
 const Home = () => {
-  // const [blogs, setBlogs] = useState<IBlog[]>([]);
-  const { data: blogs, error } = useFetch();
-
+  const { data, error } = useFetch(BLOG.GET);
   if (error) {
     return <p>Error: {error}</p>;
   }
-  console.log(blogs)
+
   return (
     <Container>
       <div className={style['home_container--form']}>
@@ -26,7 +18,7 @@ const Home = () => {
         <Form rows={3} />
       </div>
       {
-        blogs?.data.blogs.map((blog: IBlog) => (
+        data?.map((blog: IBlog) => (
           <Blog {...blog} key={blog.id} />
         ))
       }

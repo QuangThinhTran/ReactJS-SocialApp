@@ -4,8 +4,8 @@ const Bookmark = () => {
   return (
     <Container>
       <h4>Bookmark</h4>
-      <Blog />
-      <Blog />
+      {/* <Blog />
+      <Blog /> */}
     </Container>
   )
 }

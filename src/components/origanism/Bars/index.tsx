@@ -2,7 +2,7 @@ import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
-import { ShowContext } from '../../../common/BaseProvider';
+import { ShowContext } from '../../../common/providers/BaseProvider';
 
 const Bars = () => {
   const bars = useContext(ShowContext)

@@ -1,17 +1,18 @@
-import { useScreenMobile, useScreenTablet } from '../../../common/ScreenResponsive';
 import style from './index.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Bars from '../../origanism/Bars';
 import { useContext } from 'react';
-import { ShowContext } from '../../../common/BaseProvider';
+import { ShowContext } from '../../../common/providers/BaseProvider';
+import useResize from '../../../common/hooks/useResize';
+import { CONSTANTS } from '../../../common/constants';
 
 const Header = () => {
-  const mobile = useScreenMobile()
-  const tablet = useScreenTablet()
+  const { width } = useResize()
+
   const bars = useContext(ShowContext)
 
-  if (mobile.screen || tablet.screen) {
+  if (width == CONSTANTS.SCREEN_MOBILE || width <= CONSTANTS.SCREEN_TABLET) {
     return (
       <header>
         <div className={style['container']}>
