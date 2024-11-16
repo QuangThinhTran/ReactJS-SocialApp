@@ -13,6 +13,17 @@ type IUser = {
   username: string;
   email: string;
 }
+
+type IAccount = {
+  name: string,
+  username: string
+}
+
+type ITicket = {
+  username: string|undefined;
+  blog: number|undefined;
+}
+
 interface ImageProps {
   path?: IPath[] | undefined;
 }

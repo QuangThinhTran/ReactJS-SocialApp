@@ -1,6 +1,6 @@
 import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser,faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEdit } from '@fortawesome/free-solid-svg-icons';
 import Blog from '../../origanism/Blog';
 import Container from '../../origanism/Container';
 import React, { useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import { useAuth } from '../../../common/hooks/useAuth';
 
 interface Profile {
   name: string,
+  username: string,
   email: string,
   description: string,
   avatar: string,
@@ -23,15 +24,27 @@ const Profile: React.FC = () => {
   const [editMode, setEditMode] = useState(false);
   const [newDescription, setNewDescription] = useState(profile?.description || '');
   const { token } = useAuth();
+  const [followers, setFollowers] = useState<number>(0);
 
   useEffect(() => {
     const fetchProfile = async () => {
       const response = await axios.get(`http://localhost:3000/user/${username}`);
-      const data = response.data.data;  
+      const data = response.data.data;
       setProfile(data);
+      setFollowers(data.followers);
+    };
+
+    const fetchFollowers = async () => {
+      const response = await axios.get(`http://localhost:3000/pivot/count-followers/${username}`);
+      const data = response.data.data;
+      setFollowers(data);
     };
 
     fetchProfile();
+
+    const intervalId = setInterval(fetchFollowers, 1000);
+
+    return () => clearInterval(intervalId);
   }, [username]);
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -40,8 +53,8 @@ const Profile: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:3000/user/update-description`, 
-        { description: newDescription }, 
+      await axios.put(`http://localhost:3000/user/update-description`,
+        { description: newDescription },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -76,7 +89,6 @@ const Profile: React.FC = () => {
               </div>
             </div>
             <div className={style['profile_infor']}>
-              
               {editMode ? (
                 <>
                   <h4>About :</h4>
@@ -87,26 +99,26 @@ const Profile: React.FC = () => {
                 </>
               ) : (
                 <>
-                <div className={style['profile_infor-edit']}>
-                <h4>About :</h4>
-                <FontAwesomeIcon icon={faEdit} onClick={() => setEditMode(true)} className={style['icon']} />
-                </div>
-                <div className={style['profile_infor-description']}>
-                  <p>{profile.description}</p>
-                </div>
+                  <div className={style['profile_infor-edit']}>
+                    <h4>About :</h4>
+                    <FontAwesomeIcon icon={faEdit} onClick={() => setEditMode(true)} className={style['icon']} />
+                  </div>
+                  <div className={style['profile_infor-description']}>
+                    <p>{profile.description}</p>
+                  </div>
                 </>
               )}
               <div className={style['profile_infor--icon']}>
-                <FontAwesomeIcon icon={faUser} className={style['iconStyle']} /> <p>{profile.followers} Followers</p>
+                <FontAwesomeIcon icon={faUser} className={style['iconStyle']} /> <p>{followers} Followers</p>
               </div>
-              <button className='btn-submit'>Follow</button>
+              {/* <button className='btn-submit' onClick={handleFollow}>Follow</button> */}
             </div>
           </div>
         </div>
-        
-        { profile.blog && profile.blog.map((blog: IBlog) => (
-          <Blog {...blog} key={blog.id} name={profile.name}/>
-        )) }
+
+        {profile.blog && profile.blog.map((blog: IBlog) => (
+          <Blog {...blog} key={blog.id} name={profile.username} />
+        ))}
       </div>
     </Container>
   )

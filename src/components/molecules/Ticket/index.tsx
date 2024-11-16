@@ -3,19 +3,19 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faBookBookmark } from '@fortawesome/free-solid-svg-icons';
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Form } from 'antd';
 
 interface IForm {
     content: string
 }
 
-const Ticket = () => {
+const Ticket:React.FC<ITicket> = ({...props}) => {
     const [showModal, setShowModal] = useState<boolean>(false)
     const { register, handleSubmit, reset } = useForm<IForm>();
 
     const handleModal = () => {
-                setShowModal(!showModal)
+        setShowModal(!showModal)
     }
 
     const onSubmit: SubmitHandler<IForm> = data => {
@@ -26,9 +26,9 @@ const Ticket = () => {
         <>
             <div className={style['ticket']}>
                 <div className={style['ticket_container']}>
-                    <div className={`${style.ticket_container_item} ${style.dotted}`} onClick={() => handleModal()}>
+                    {/* <div className={`${style.ticket_container_item} ${style.dotted}`} onClick={() => handleModal()}>
                         <FontAwesomeIcon icon={faFlag} />Report
-                    </div>
+                    </div> */}
                     <div className={style['ticket_container_item']}>
                         <FontAwesomeIcon icon={faBookBookmark} />Bookmark
                     </div>
