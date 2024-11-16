@@ -12,7 +12,7 @@ const API = 'http://127.0.0.1:3000/'
 const useFetch = (url: string, config?: AxiosRequestConfig<any>) => {
     const [data, setData] = useState<any | null>(null);
     const [error, setError] = useState<string | null>(null);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,12 +23,8 @@ const useFetch = (url: string, config?: AxiosRequestConfig<any>) => {
             }
         };
 
-        let isMounted = true;
         fetchData();
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+    }, [data]);
 
     return { data, error };
 };

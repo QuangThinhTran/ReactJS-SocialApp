@@ -1,14 +1,18 @@
 type IBlog = {
-  id: number;
+  id?: number
   slug: string;
   content: string;
   createdAt: string;
-  updatedAt: string;
-  deletedAt?: any;
   images?: object,
-  name: string
+  name: string,
+  users: IUser
 }
 
+type IUser = {
+  name: string;
+  username: string;
+  email: string;
+}
 interface ImageProps {
   path?: IPath[] | undefined;
 }

@@ -10,3 +10,9 @@ export enum BLOG {
     DETAIL = 'blog/detail',
     DELETE = 'blog/delete',
 }
+
+export enum USER {
+    GET = 'users',
+    DETAIL = 'user/',
+    UPDATE = 'user/update',
+}

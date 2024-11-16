@@ -9,6 +9,7 @@ import LayoutPage from './page/LayoutPage'
 import People from './components/template/People'
 import BaseProvider from './common/providers/BaseProvider'
 import React from 'react'
+import AuthProvider from './common/providers/AuthProvider'
 
 function AppUI() {
   return (
@@ -16,7 +17,7 @@ function AppUI() {
       <Routes>
         <Route element={<LayoutPage />}>
           <Route path={'/'} element={<Home />} />
-          <Route path={'/profile'} element={<Profile />} />
+          <Route path={'/profile/:username'} element={<Profile />} />
           <Route path={'/bookmark'} element={<Bookmark />} />
           <Route path={'/people'} element={<People />} />
         </Route>
@@ -30,9 +31,11 @@ function AppUI() {
 
 function App() {
   return (
-    <BaseProvider>
-      <AppUI />
-    </BaseProvider>
+    <AuthProvider>
+      <BaseProvider>
+        <AppUI />
+      </BaseProvider>
+    </AuthProvider>
   )
 }
 

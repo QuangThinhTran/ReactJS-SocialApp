@@ -1,15 +1,16 @@
 import CommentContainer from '../Comment'
 import style from './index.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Ticket from '../../molecules/Ticket';
 import FormComment from '../../atom/Form/FormComment';
 import Images from '../../atom/Silder/Images';
 import DateTime from '../../atom/DateTime';
+import { Link } from 'react-router-dom';
 
-const Blog = ({ ...props }: IBlog) => {
+const Blog: React.FC<IBlog> = ({...props}) => {
 
   const [show, setShow] = useState<boolean>(false)
   const [like, setLike] = useState<boolean>(false)
@@ -49,7 +50,7 @@ const Blog = ({ ...props }: IBlog) => {
         <div className={style['blog_header']}>
           <div className={style['blog_header--infor']}>
             <img src="/icon/avatar.svg" alt="" />
-            <a href="" className='h5'>{props.name}</a>
+            <Link to={"/profile/" + props.name } className='h5'>{props.name}</Link>
           </div>
           <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick} className={style['icon']} />
           {
@@ -72,7 +73,7 @@ const Blog = ({ ...props }: IBlog) => {
           </div>
         </div>
         <div className={style['blog_footer']}>
-          <FormComment rows={1} />
+          {props.id !== undefined && <FormComment rows={1} id={props.id}/>}
         </div>
         <CommentContainer />
         <CommentContainer />

@@ -48,3 +48,15 @@ a {
     margin-top: 20px;
     cursor: pointer;
 }
+
+.profile_infor-description {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.profile_infor-edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

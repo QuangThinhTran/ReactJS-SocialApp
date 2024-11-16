@@ -5,12 +5,34 @@ import Bars from '../../origanism/Bars';
 import { useContext } from 'react';
 import { ShowContext } from '../../../common/providers/BaseProvider';
 import useResize from '../../../common/hooks/useResize';
-import { CONSTANTS } from '../../../common/constants';
+import { CONSTANTS, HTTP_STATUS } from '../../../common/constants';
+import { useAuth } from '../../../common/hooks/useAuth';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { width } = useResize()
-
   const bars = useContext(ShowContext)
+  const auth = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    const response = await axios.post('http://localhost:3000/auth/logout', {}, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = response.data;
+    if (data.status === HTTP_STATUS.OK) {
+      auth.removeToken()
+      navigate("/", { replace: true })
+    }
+    else {
+      alert(data.message)
+    }
+  }
 
   if (width == CONSTANTS.SCREEN_MOBILE || width <= CONSTANTS.SCREEN_TABLET) {
     return (
@@ -33,11 +55,20 @@ const Header = () => {
       <div className={style['container']}>
         <a href="/" className={style['navbar-brand']}>Ideas</a>
         <div className={style['header-container']}>
-          <a href="/login" className="nav-link">Login</a>
-          <a href="/register" className="nav-link">Register</a>
+          {!auth.token ? (
+            <>
+              <Link to="/login" className="nav-link">Login</Link>
+              <Link to="/register" className="nav-link">Register</Link>
+            </>
+          ) : (
+            <>
+              <Link to={ "/profile/" + auth.username } className="nav-link">{auth.username}</Link>
+              <a className="nav-link" onClick={handleLogout}>Logout</a>
+            </>
+          )}
         </div>
       </div>
-    </header>
+    </header> 
   )
 }
 

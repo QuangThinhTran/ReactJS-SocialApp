@@ -16,7 +16,7 @@ const ImageSlider: React.FC<ImageProps> = ({ path }) => {
     return (
         <Slider {...settings}>
             {path && path.map(({ id, path }) => (
-                <div key={id}>
+                <div key={id} className='slide-img'>
                     <img src={`http://127.0.0.1:3000/${path}`} alt="" />
                 </div>
             ))}

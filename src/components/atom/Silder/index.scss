@@ -3,3 +3,9 @@
 .slick-next {
   display: none !important; /* Hide the default arrows */
 }
+
+.slide-img img {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+}
