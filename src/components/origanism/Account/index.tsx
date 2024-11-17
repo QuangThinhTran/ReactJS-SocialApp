@@ -4,10 +4,13 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../../common/hooks/useAuth';
 
-const Account:React.FC<IAccount> = ({...props}) => {
+const Account: React.FC<IAccount> = ({ ...props }) => {
 
-    const [ followers, setFollowers ] = useState<number>(0)
+    const [followers, setFollowers] = useState<number>(0)
+    const [followed, setFollowed] = useState<boolean>(false);
+    const { token } = useAuth();
 
     useEffect(() => {
         const fetchFollowers = async () => {
@@ -16,8 +19,35 @@ const Account:React.FC<IAccount> = ({...props}) => {
             setFollowers(data)
         }
 
+        const checkFollow = async () => {
+            const response = await axios.get(`http://localhost:3000/pivot/check-follow/${props.email}`);
+            const data = response.data.data;
+            setFollowed(data);
+        };
+
         fetchFollowers()
-    }, [followers])
+        checkFollow();
+    }, [followers, followed])
+
+    const handleFollow = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/pivot/follower/${props.email}`)
+            const data = response.data.data
+            setFollowers(data)
+        } catch (error: any) {
+            console.error('Error during registration:', error)
+        }
+    }
+
+    const handleUnfollow = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/pivot/unfollow/${props.email}`)
+            const data = response.data.data
+            setFollowers(data)
+        } catch (error: any) {
+            console.error('Error during registration:', error)
+        }
+    }
 
     return (
         <>
@@ -25,22 +55,21 @@ const Account:React.FC<IAccount> = ({...props}) => {
                 <div className={style['account_header']}>
                     <img src="/icon/avatar.svg" alt="" />
                     <div className={style['account_header--item']}>
-                        <Link to={'/profile/' + props.username}>{ props.name }</Link>
+                        <Link to={'/profile/' + props.username}>{props.name}</Link>
                         <div className={style['account_header--followers']}>
                             <FontAwesomeIcon icon={faUser} />
                             <h5>{followers} Followers</h5>
                         </div>
                     </div>
                 </div>
-                <div className={style['account_footer']}>
-                    <button>
-                        Follow
-                    </button>
-                </div>
+                {
+                    token === null ? null : !followed ? 
+                    <div className={style['account_footer']} onClick={handleFollow}> <button>Follow</button> </div> :
+                    <div className={style['account_footer_temp']} onClick={handleUnfollow}> <button>UnFollow</button> </div>
+                }
             </div>
             <hr />
         </>
-
     )
 }
 

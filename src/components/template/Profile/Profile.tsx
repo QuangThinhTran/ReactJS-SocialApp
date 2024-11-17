@@ -19,23 +19,24 @@ interface Profile {
 }
 
 const Profile: React.FC = () => {
-  const { username } = useParams<{ username: string }>();
+  const { usernameTemp } = useParams<{ usernameTemp: string }>();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [newDescription, setNewDescription] = useState(profile?.description || '');
-  const { token } = useAuth();
+  const { token, username } = useAuth();
   const [followers, setFollowers] = useState<number>(0);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const response = await axios.get(`http://localhost:3000/user/${username}`);
+      const response = await axios.get(`http://localhost:3000/user/${usernameTemp}`);
       const data = response.data.data;
+      console.log(usernameTemp);
       setProfile(data);
       setFollowers(data.followers);
     };
 
     const fetchFollowers = async () => {
-      const response = await axios.get(`http://localhost:3000/pivot/count-followers/${username}`);
+      const response = await axios.get(`http://localhost:3000/pivot/count-followers/${usernameTemp}`);
       const data = response.data.data;
       setFollowers(data);
     };
@@ -45,7 +46,7 @@ const Profile: React.FC = () => {
     const intervalId = setInterval(fetchFollowers, 1000);
 
     return () => clearInterval(intervalId);
-  }, [username]);
+  }, [usernameTemp]);
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewDescription(e.target.value);
@@ -101,7 +102,11 @@ const Profile: React.FC = () => {
                 <>
                   <div className={style['profile_infor-edit']}>
                     <h4>About :</h4>
-                    <FontAwesomeIcon icon={faEdit} onClick={() => setEditMode(true)} className={style['icon']} />
+                    { 
+                      usernameTemp === username ? 
+                      <FontAwesomeIcon icon={faEdit} onClick={() => setEditMode(true)} className={style['icon']} /> : null
+                    }
+                    
                   </div>
                   <div className={style['profile_infor-description']}>
                     <p>{profile.description}</p>

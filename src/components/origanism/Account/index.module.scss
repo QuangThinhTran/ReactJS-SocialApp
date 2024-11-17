@@ -29,14 +29,22 @@
     display: flex;
     gap: 10px;
 }
-.account_footer {
+
+.account_footer, .account_footer_temp {
     button {
         font-family: "Neucha", sans-serif;
-        background: #36efa9;
         color: #333333;
         &:hover {
             transform: translate(-0.25rem, -0.25rem);
             box-shadow: 3px 3px #000;
         }
     }
+}
+
+.account_footer button {
+    background: #36efa9;
+}
+
+.account_footer_temp button {
+    background: rgb(255, 144, 232);
 }

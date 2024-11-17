@@ -15,35 +15,31 @@ const FormComment= (props: IForm) => {
     const { token } = useAuth()
 
     const onSubmit = async (data: any) => {
-        try {
-            const formData = new FormData();
-            formData.append('comment', data.comment);
-            formData.append('blog_id', props.id.toString());
+        const formData = new FormData();
+        formData.append('comment', data.comment);
+        formData.append('blog', props.id.toString());
 
-            const response = await axios.post('http://localhost:3000/blog/comment', data, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-              }
-            });
-
-            const values = response.data;   
-            if (response.status === HTTP_STATUS.CREATED) {
-                alert(values.message);
-            } else {
-                alert(values.message);
-            }
-        } catch (error) {
-            console.error('Error during registration:', error);
-            alert('An error occurred during registration. Please try again.');
+        const response = await axios.post('http://localhost:3000/comment/create', formData, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           }
+        });
+        
+        const values = response.data;   
+        
+        if (response.status === HTTP_STATUS.CREATED) {
+            alert(values.message);
+        } else {
+            alert(values.message);
+        }
     }
 
     return (
-        <form onSubmit={undefined}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <textarea rows={props.rows} defaultValue={""} {...register('comment', {required: 'Comment is required'})}/>
             <div className={style['form-container']}>
-                <Button color='#ff90e8' text='Share' />
+                <Button color='#ff90e8' text='Share'/>
             </div>
         </form>
     )

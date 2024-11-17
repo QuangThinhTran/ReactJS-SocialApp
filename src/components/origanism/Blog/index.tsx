@@ -21,10 +21,6 @@ const Blog: React.FC<IBlog> = ({...props}) => {
   const [liked, setLiked] = useState<number>(0)
   const [likes, setLikes] = useState<number>(0)
   const { username } = useAuth(); 
-  
-  const showTicket = () => {
-    setShow(!show)
-  }
 
   const iconRef = useRef<SVGSVGElement>(null);
 
@@ -55,7 +51,6 @@ const Blog: React.FC<IBlog> = ({...props}) => {
     const fetchBlog = async () => {
       const response = await axios.get(`http://localhost:3000/blog/${props.slug}`);
       const data = response.data.data;
-      console.log(data);
       setBlog(data);
     }
 
@@ -80,7 +75,7 @@ const Blog: React.FC<IBlog> = ({...props}) => {
     fetchBlog();
     checkLike();
     fetchLike();
-  }, [likes])
+  }, [likes,blog?.comments])
 
   const handleClickOutside = (event: MouseEvent) => {
     if (iconRef.current && !iconRef.current.contains(event.target as Node)) {
@@ -88,7 +83,8 @@ const Blog: React.FC<IBlog> = ({...props}) => {
     }
   };
 
-  const handleFontAwesomeIconClick = () => {
+  const handleFontAwesomeIconClick = (event: React.MouseEvent<SVGSVGElement>) => {
+    event.stopPropagation();
     setShow(!show);
   };
 
@@ -107,15 +103,15 @@ const Blog: React.FC<IBlog> = ({...props}) => {
         <div className={style['blog_header']}>
           <div className={style['blog_header--infor']}>
             <img src="/icon/avatar.svg" alt="" />
-            <Link to={"/profile/" + blog?.name } className='h5'>{blog?.name}</Link>
+            <Link to={"/profile/" + blog?.name } className='h5'>{blog?.users.name}</Link>
           </div>
-          {
-            username == blog?.users.username ? null : <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick} className={style['icon']} />
+          {/* {
+            username == blog?.users.username ? null : <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick} className={style['icon']} ref={iconRef} />
           }
            
           {
             show ? <Ticket blog={blog?.id} username={blog?.users.username} key={blog?.id}/> : null
-          }
+          } */}
         </div>
         <div className={style['blog_container']}>
           {blog?.content}
@@ -135,8 +131,14 @@ const Blog: React.FC<IBlog> = ({...props}) => {
         <div className={style['blog_footer']}>
           {blog?.id !== undefined && <FormComment rows={1} id={blog?.id}/>}
         </div>
-        <CommentContainer />
-        <CommentContainer />
+
+        {
+          blog?.comments.map((comment: IComment) => {
+            return (
+              <CommentContainer key={comment.id} {...comment}/>
+            )
+          })
+        }
       </div>
     </>
   )

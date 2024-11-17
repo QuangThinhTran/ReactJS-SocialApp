@@ -1,13 +1,21 @@
+import { useEffect, useState } from 'react'
 import style from './index.module.scss'
+import axios from 'axios'
+import useFetch from '../../../common/hooks/useFetch'
+import moment from 'moment'
 
-interface IComment {
-  name: string,
-  description: string,
-  datetime: string
-}
+const Comment:React.FC<IComment> = ({...props}) => {
 
+  const { data, error } = useFetch(`comment/detail/${props.id}`);
 
-const Comment = () => {
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <hr />
@@ -15,14 +23,12 @@ const Comment = () => {
         <div className={style['comment_header']}>
           <div className={style['comment_header--infor']}>
             <img src="/icon/avatar.svg" alt="" />
-            <a href="" className='h6'>Mario</a>
+            <a href="" className='h6'>{data.user.name}</a>
           </div>
-          <p>3-5-2023</p>
+            <p>{moment(data.createdAt).format("DD-MM-YYYY")}</p>            
         </div>
         <div className={style['comment_content']}>
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-          written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line
-          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+          {data.comment}
         </div>
       </div>
     </>

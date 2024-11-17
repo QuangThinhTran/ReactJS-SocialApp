@@ -5,7 +5,8 @@ type IBlog = {
   createdAt: string;
   images?: object,
   name: string,
-  users: IUser
+  users: IUser,
+  comments: IComment[]
 }
 
 type IUser = {
@@ -14,9 +15,22 @@ type IUser = {
   email: string;
 }
 
+type IComment = {
+  id: number;
+  comment: string;
+  createdAt: string;
+  user: IUser;
+}
+
 type IAccount = {
   name: string,
-  username: string
+  username: string,
+  email: string
+}
+
+type IPeople = {
+  name?: string;
+  email?: string;
 }
 
 type ITicket = {

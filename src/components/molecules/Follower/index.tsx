@@ -4,7 +4,6 @@ import style from './index.module.scss';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../common/hooks/useAuth';
-import { Link } from 'react-router-dom';
 
 interface IFollower {
   id: string;
@@ -34,7 +33,7 @@ const Follower: React.FC<IFollower> = ({ name, email }) => {
     };
 
     checkFollow();
-  }, [email]);
+  }, [email, followed]);
 
   return (
     <div className={style['follower']}>

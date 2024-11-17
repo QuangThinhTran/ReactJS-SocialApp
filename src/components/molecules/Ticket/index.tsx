@@ -1,7 +1,7 @@
 import style from './index.module.scss'
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag, faBookBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faFlag, faBookBookmark, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { SubmitHandler, useForm } from "react-hook-form";
 import React, { useState } from 'react';
 import { Modal, Form } from 'antd';
@@ -31,6 +31,9 @@ const Ticket:React.FC<ITicket> = ({...props}) => {
                     </div> */}
                     <div className={style['ticket_container_item']}>
                         <FontAwesomeIcon icon={faBookBookmark} />Bookmark
+                    </div>
+                    <div className={style['ticket_container_item']}>
+                        <FontAwesomeIcon icon={faBookmark} />Unbookmark
                     </div>
                 </div>
             </div>
