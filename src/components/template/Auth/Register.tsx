@@ -26,11 +26,12 @@ const Register = () => {
                 setUsername(values.data.username);
                 navigate("/", { replace: true });
             } else {
+                console.error('Error during registration:', values.message);
                 alert(values.message);
             }
-        } catch (error) {
-            console.error('Error during registration:', error);
-            alert('An error occurred during registration. Please try again.');
+        } catch (error: any) {
+            console.error('Error during registration:', );
+            alert(error.response.data.message);
         }
     };
 

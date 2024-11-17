@@ -30,7 +30,6 @@ const Profile: React.FC = () => {
     const fetchProfile = async () => {
       const response = await axios.get(`http://localhost:3000/user/${usernameTemp}`);
       const data = response.data.data;
-      console.log(usernameTemp);
       setProfile(data);
       setFollowers(data.followers);
     };

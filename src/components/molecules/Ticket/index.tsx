@@ -1,10 +1,11 @@
 import style from './index.module.scss'
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag, faBookBookmark, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faFlag, faBookBookmark, faBookmark, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { SubmitHandler, useForm } from "react-hook-form";
 import React, { useState } from 'react';
 import { Modal, Form } from 'antd';
+import axios from 'axios';
 
 interface IForm {
     content: string
@@ -22,6 +23,15 @@ const Ticket:React.FC<ITicket> = ({...props}) => {
         reset
     }
 
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:3000/blog/delete/${props.blog}`)
+            alert(response.data.message)
+        } catch (error : any) {
+            console.error('Error during registration:', error);
+        }
+    }
+
     return (
         <>
             <div className={style['ticket']}>
@@ -29,11 +39,14 @@ const Ticket:React.FC<ITicket> = ({...props}) => {
                     {/* <div className={`${style.ticket_container_item} ${style.dotted}`} onClick={() => handleModal()}>
                         <FontAwesomeIcon icon={faFlag} />Report
                     </div> */}
-                    <div className={style['ticket_container_item']}>
+                    {/* <div className={style['ticket_container_item']}>
                         <FontAwesomeIcon icon={faBookBookmark} />Bookmark
                     </div>
                     <div className={style['ticket_container_item']}>
                         <FontAwesomeIcon icon={faBookmark} />Unbookmark
+                    </div> */}
+                    <div className={style['ticket_container_item']} onClick={handleDelete}>
+                        <FontAwesomeIcon icon={faDeleteLeft} />Delete
                     </div>
                 </div>
             </div>

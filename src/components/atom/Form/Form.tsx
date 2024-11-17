@@ -29,6 +29,7 @@ const Form = (props: IForm) => {
       });
 
       const values = response.data;
+
       if (response.status === HTTP_STATUS.CREATED) {
           alert(values.message);
       } else {
@@ -36,7 +37,7 @@ const Form = (props: IForm) => {
       }
     } catch (error) {
       console.error('Error during registration:', error);
-      alert('An error occurred during registration. Please try again.');
+      alert('Please login to share your thoughts');
     }
   }
 

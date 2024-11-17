@@ -27,7 +27,11 @@ const Account: React.FC<IAccount> = ({ ...props }) => {
 
         fetchFollowers()
         checkFollow();
-    }, [followers, followed])
+
+        const intervalId = setInterval(checkFollow, 1000);
+
+        return () => clearInterval(intervalId);
+    }, [followers])
 
     const handleFollow = async () => {
         try {

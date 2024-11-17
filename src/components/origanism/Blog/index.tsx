@@ -105,13 +105,13 @@ const Blog: React.FC<IBlog> = ({...props}) => {
             <img src="/icon/avatar.svg" alt="" />
             <Link to={"/profile/" + blog?.name } className='h5'>{blog?.users.name}</Link>
           </div>
-          {/* {
-            username == blog?.users.username ? null : <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick} className={style['icon']} ref={iconRef} />
+          {
+            username == blog?.users.username ? <FontAwesomeIcon icon={faBars} onClick={handleFontAwesomeIconClick} className={style['icon']} ref={iconRef} /> : null
           }
            
           {
             show ? <Ticket blog={blog?.id} username={blog?.users.username} key={blog?.id}/> : null
-          } */}
+          }
         </div>
         <div className={style['blog_container']}>
           {blog?.content}

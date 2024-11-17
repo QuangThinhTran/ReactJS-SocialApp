@@ -33,7 +33,10 @@ const Follower: React.FC<IFollower> = ({ name, email }) => {
     };
 
     checkFollow();
-  }, [email, followed]);
+    const intervalId = setInterval(checkFollow, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [email]);
 
   return (
     <div className={style['follower']}>
